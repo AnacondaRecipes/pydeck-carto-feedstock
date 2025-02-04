@@ -1,5 +1,5 @@
 {% set name = "pydeck-carto" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,25 +7,30 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0ceec71f9e9667d65cc8647ad1bca57bb48ab4fbb9627a732c3e44735c982858
+  sha256: 98100ea7d4cef34f14947295ed5c59fda923c8453b60380824502d242ff01601
 
 build:
   number: 0
-  script: {{ PYTHON }} -m pip install . -vv
-  noarch: python
+  skip: True  # [py<38]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
   run:
-    - python >=3.7
-    - pydeck >=0.8.0
-    - carto-auth >=0.1.0
+    - python
+    - pydeck >=0.9.0
+    - carto-auth >=0.2.0
+    - typing-extensions >=4.0.0
 
 test:
   imports:
     - pydeck_carto
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/visgl/deck.gl/tree/master/bindings/pydeck-carto
