@@ -18,6 +18,8 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
+    - wheel
   run:
     - python
     - pydeck >=0.9.0
@@ -40,6 +42,7 @@ about:
   license_file: LICENSE
   doc_url: https://pydeck-carto.readthedocs.io
   dev_url: https://github.com/visgl/deck.gl/blob/master/bindings/pydeck-carto
+  description: Pydeck wrapper for use with CARTO
 
 extra:
   recipe-maintainers:
